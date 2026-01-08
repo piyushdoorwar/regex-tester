@@ -63,6 +63,22 @@
             <div class="regex-error" id="regexError" aria-live="polite"></div>
           </div>
 
+          <div class="regex-options" id="regexOptions">
+            <div class="flags">
+              <span class="options-label">Flags</span>
+              <button class="flag-btn active" data-flag="g" data-tooltip="Global match" aria-pressed="true">g</button>
+              <button class="flag-btn" data-flag="i" data-tooltip="Ignore case" aria-pressed="false">i</button>
+              <button class="flag-btn" data-flag="m" data-tooltip="Multiline" aria-pressed="false">m</button>
+              <button class="flag-btn" data-flag="s" data-tooltip="Dot matches newline" aria-pressed="false">s</button>
+              <button class="flag-btn" data-flag="u" data-tooltip="Unicode" aria-pressed="false">u</button>
+              <button class="flag-btn" data-flag="y" data-tooltip="Sticky" aria-pressed="false">y</button>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="highlightToggle" checked />
+              <span>Highlight matches</span>
+            </label>
+          </div>
+
           <div class="control-row">
             <span class="row-label">Text</span>
             <button class="chip-btn icon-only" id="pasteTextBtn" data-tooltip="Paste from clipboard" aria-label="Paste text from clipboard">
@@ -71,23 +87,6 @@
                 <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
               </svg>
             </button>
-            <div class="flags-center">
-              <div class="regex-options compact" id="regexOptions">
-                <div class="flags">
-                  <span class="options-label">Flags</span>
-                  <button class="flag-btn active" data-flag="g" data-tooltip="Global match" aria-pressed="true">g</button>
-                  <button class="flag-btn" data-flag="i" data-tooltip="Ignore case" aria-pressed="false">i</button>
-                  <button class="flag-btn" data-flag="m" data-tooltip="Multiline" aria-pressed="false">m</button>
-                  <button class="flag-btn" data-flag="s" data-tooltip="Dot matches newline" aria-pressed="false">s</button>
-                  <button class="flag-btn" data-flag="u" data-tooltip="Unicode" aria-pressed="false">u</button>
-                  <button class="flag-btn" data-flag="y" data-tooltip="Sticky" aria-pressed="false">y</button>
-                </div>
-                <label class="toggle">
-                  <input type="checkbox" id="highlightToggle" checked />
-                  <span>Highlight matches</span>
-                </label>
-              </div>
-            </div>
             <div class="match-nav">
               <button class="icon-btn nav-btn" id="prevMatchBtn" aria-label="Previous match">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -133,24 +132,10 @@
             >
               ?
             </button>
-            <button class="chip-btn icon-only" id="copyOutputBtn" data-tooltip="Copy output" aria-label="Copy output">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-            </button>
           </div>
         </section>
 
-        <section class="results-grid">
-          <div class="panel results-panel">
-            <div class="panel-header">
-              <span>Output</span>
-              <span class="hint" id="outputMeta">0 items</span>
-            </div>
-            <pre class="output-list" id="outputList"></pre>
-          </div>
-
+        <section class="results-column">
           <div class="panel results-panel">
             <div class="panel-header panel-header-search">
               <div>
@@ -166,6 +151,22 @@
               </label>
             </div>
             <div class="match-list" id="matchList"></div>
+          </div>
+
+          <div class="panel results-panel">
+            <div class="panel-header panel-header-actions">
+              <div>
+                <span>Output</span>
+                <span class="hint" id="outputMeta">0 items</span>
+              </div>
+              <button class="icon-btn" id="copyOutputBtn" data-tooltip="Copy output" aria-label="Copy output">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+              </button>
+            </div>
+            <pre class="output-list" id="outputList"></pre>
           </div>
         </section>
       </main>
