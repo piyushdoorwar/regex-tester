@@ -19,6 +19,7 @@ const pasteTextBtn = document.getElementById('pasteTextBtn');
 const sampleBtn = document.getElementById('sampleBtn');
 const clearBtn = document.getElementById('clearBtn');
 const copyOutputBtn = document.getElementById('copyOutputBtn');
+const toastStack = document.getElementById('toastStack');
 
 const openCheatSheetBtn = document.getElementById('openCheatSheetBtn');
 const closeCheatSheetBtn = document.getElementById('closeCheatSheetBtn');
@@ -33,14 +34,23 @@ const flagButtons = FLAG_ORDER.map((flag) =>
 const flagButtonMap = new Map(flagButtons.map((button) => [button.dataset.flag, button]));
 
 const sampleData = {
-  pattern: '([A-Z])\\w+',
+  pattern: '[A-Z][a-z]+',
   flags: 'g',
   template: '$0\\n',
   text:
-    'DevUtils helps you with your tiny daily tasks with just a single click. It works entirely offline and is open source!\\n\\n' +
-    'Work Offline\\n' +
-    'Stop pasting your JSON strings, JWT tokens, or any potentially sensitive data to random websites online.\\n' +
-    'DevUtils.app helps you quickly do your tiny tasks entirely offline! Everything you paste into the app never leaves your machine.'
+    'TITLE: Regex Playground\\n' +
+    'AUTHOR: DEVUTILS\\n' +
+    'notes: lower-case key (toggle i)\\n' +
+    '\\n' +
+    'BLOCK: first line\\n' +
+    'second line continues\\n' +
+    'third line ends\\n' +
+    '\\n' +
+    'PATH: /api/v1/users\\n' +
+    'ID: 12345\\n' +
+    'TAG: Alpha_Beta\\n' +
+    '\\n' +
+    'Tip: Toggle g i m s y to see how matches change.'
 };
 
 let matches = [];
@@ -408,7 +418,27 @@ function pasteFromClipboard(target) {
   return navigator.clipboard.readText().then((text) => {
     target.value = text;
     updateAll();
+    showToast('Pasted from clipboard');
   });
+}
+
+function showToast(message) {
+  if (!toastStack) {
+    return;
+  }
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  toastStack.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.add('show');
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 200);
+  }, 2200);
 }
 
 function loadSample() {
@@ -474,11 +504,15 @@ clearBtn.addEventListener('click', () => {
   matchSearch.value = '';
   setFlagState('g');
   updateAll();
+  showToast('Cleared');
 });
 
 copyOutputBtn.addEventListener('click', () => {
   copyText(outputList.textContent || '')
-    .then(() => flashCopied(copyOutputBtn))
+    .then(() => {
+      flashCopied(copyOutputBtn);
+      showToast('Copied');
+    })
     .catch(() => {});
 });
 
