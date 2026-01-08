@@ -19,8 +19,6 @@ const pasteTextBtn = document.getElementById('pasteTextBtn');
 const sampleBtn = document.getElementById('sampleBtn');
 const clearBtn = document.getElementById('clearBtn');
 const copyOutputBtn = document.getElementById('copyOutputBtn');
-const toggleOptionsBtn = document.getElementById('toggleOptionsBtn');
-const regexOptions = document.getElementById('regexOptions');
 
 const openCheatSheetBtn = document.getElementById('openCheatSheetBtn');
 const closeCheatSheetBtn = document.getElementById('closeCheatSheetBtn');
@@ -484,15 +482,6 @@ copyOutputBtn.addEventListener('click', () => {
     .catch(() => {});
 });
 
-toggleOptionsBtn.addEventListener('click', () => {
-  const isHidden = regexOptions.hasAttribute('hidden');
-  if (isHidden) {
-    regexOptions.removeAttribute('hidden');
-  } else {
-    regexOptions.setAttribute('hidden', '');
-  }
-  toggleOptionsBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
-});
 
 openCheatSheetBtn.addEventListener('click', () => {
   openModal(cheatSheetModal);
