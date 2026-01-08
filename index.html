@@ -29,9 +29,26 @@
           <div class="control-row">
             <span class="row-label">RegExp</span>
             <div class="row-actions">
-              <button class="chip-btn" id="pasteRegexBtn">Clipboard</button>
-              <button class="chip-btn" id="sampleBtn">Sample</button>
-              <button class="chip-btn" id="clearBtn">Clear</button>
+              <button class="chip-btn icon-only" id="pasteRegexBtn" data-tooltip="Paste from clipboard" aria-label="Paste regex from clipboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                </svg>
+              </button>
+              <button class="chip-btn icon-only" id="sampleBtn" data-tooltip="Load sample" aria-label="Load sample data">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </button>
+              <button class="chip-btn icon-only" id="clearBtn" data-tooltip="Clear inputs" aria-label="Clear inputs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                </svg>
+              </button>
               <button class="icon-btn" id="toggleOptionsBtn" data-tooltip="Options" aria-expanded="false" aria-controls="regexOptions">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <line x1="4" y1="21" x2="4" y2="14" />
@@ -64,12 +81,12 @@
           <div class="regex-options" id="regexOptions" hidden>
             <div class="flags">
               <span class="options-label">Flags</span>
-              <button class="flag-btn active" data-flag="g" aria-pressed="true">g</button>
-              <button class="flag-btn" data-flag="i" aria-pressed="false">i</button>
-              <button class="flag-btn" data-flag="m" aria-pressed="false">m</button>
-              <button class="flag-btn" data-flag="s" aria-pressed="false">s</button>
-              <button class="flag-btn" data-flag="u" aria-pressed="false">u</button>
-              <button class="flag-btn" data-flag="y" aria-pressed="false">y</button>
+              <button class="flag-btn active" data-flag="g" data-tooltip="Global match" aria-pressed="true">g</button>
+              <button class="flag-btn" data-flag="i" data-tooltip="Ignore case" aria-pressed="false">i</button>
+              <button class="flag-btn" data-flag="m" data-tooltip="Multiline" aria-pressed="false">m</button>
+              <button class="flag-btn" data-flag="s" data-tooltip="Dot matches newline" aria-pressed="false">s</button>
+              <button class="flag-btn" data-flag="u" data-tooltip="Unicode" aria-pressed="false">u</button>
+              <button class="flag-btn" data-flag="y" data-tooltip="Sticky" aria-pressed="false">y</button>
             </div>
             <label class="toggle">
               <input type="checkbox" id="highlightToggle" checked />
@@ -79,7 +96,12 @@
 
           <div class="control-row">
             <span class="row-label">Text</span>
-            <button class="chip-btn" id="pasteTextBtn">Clipboard</button>
+            <button class="chip-btn icon-only" id="pasteTextBtn" data-tooltip="Paste from clipboard" aria-label="Paste text from clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+              </svg>
+            </button>
             <div class="match-nav">
               <button class="icon-btn nav-btn" id="prevMatchBtn" aria-label="Previous match">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -125,7 +147,12 @@
             >
               ?
             </button>
-            <button class="chip-btn" id="copyOutputBtn">Copy</button>
+            <button class="chip-btn icon-only" id="copyOutputBtn" data-tooltip="Copy output" aria-label="Copy output">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            </button>
           </div>
         </section>
 

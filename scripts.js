@@ -367,8 +367,24 @@ function copyText(text) {
 }
 
 function flashCopied(button) {
+  const isIconOnly = button.classList.contains('icon-only');
   const originalText = button.textContent;
+  const originalTooltip = button.getAttribute('data-tooltip');
   button.classList.add('copied');
+
+  if (isIconOnly) {
+    if (originalTooltip) {
+      button.setAttribute('data-tooltip', 'Copied');
+    }
+    setTimeout(() => {
+      button.classList.remove('copied');
+      if (originalTooltip) {
+        button.setAttribute('data-tooltip', originalTooltip);
+      }
+    }, 1500);
+    return;
+  }
+
   button.textContent = 'Copied';
   setTimeout(() => {
     button.classList.remove('copied');
@@ -498,9 +514,5 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-if (!regexInput.value && !textInput.value) {
-  loadSample();
-} else {
-  setFlagState('g');
-  updateAll();
-}
+setFlagState('g');
+updateAll();

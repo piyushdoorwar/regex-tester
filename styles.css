@@ -1494,6 +1494,7 @@ textarea::selection {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .chip-btn svg {
@@ -1518,6 +1519,40 @@ textarea::selection {
   border-color: var(--accent-yellow);
   color: var(--bg);
   box-shadow: var(--shadow-yellow);
+}
+
+.chip-btn.icon-only {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  justify-content: center;
+}
+
+.chip-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  padding: 0.4rem 0.7rem;
+  background: var(--panel-bg-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+}
+
+.chip-btn[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .ghost-btn {
@@ -1673,6 +1708,7 @@ textarea::selection {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .flag-btn:hover {
@@ -1686,6 +1722,33 @@ textarea::selection {
   border-color: var(--accent-yellow);
   color: var(--bg);
   box-shadow: var(--shadow-yellow);
+}
+
+.flag-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  padding: 0.35rem 0.65rem;
+  background: var(--panel-bg-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+}
+
+.flag-btn[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .toggle {
