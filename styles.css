@@ -1464,7 +1464,7 @@ textarea::selection {
 }
 
 .control-row.text-row {
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .control-row.text-row .row-label {
@@ -1637,6 +1637,16 @@ textarea::selection {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+}
+
+.icon-btn[data-tooltip][data-tooltip-align="right"]::after {
+  left: auto;
+  right: 0;
+  transform: translateY(4px);
+}
+
+.icon-btn[data-tooltip][data-tooltip-align="right"]:hover::after {
+  transform: translateY(0);
 }
 
 .info-btn {
@@ -1842,9 +1852,11 @@ textarea::selection {
 .text-highlight mark {
   background: rgba(0, 208, 156, 0.35);
   border-radius: 6px;
-  padding: 0 2px;
+  padding: 0;
   box-shadow: 0 0 0 1px rgba(0, 208, 156, 0.35);
   color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .text-highlight mark.active {
