@@ -313,11 +313,13 @@ function setActiveMatch(index, focus) {
   updateMatchCount();
   renderHighlight(textInput.value);
   renderMatchList();
+  scrollMatchListToActive();
 
   if (focus) {
     const match = matches[index];
     textInput.focus();
     textInput.setSelectionRange(match.index, match.end);
+    scrollTextToMatch(match);
   }
 }
 
@@ -374,6 +376,24 @@ function copyText(text) {
   });
 }
 
+function scrollTextToMatch(match) {
+  const textBefore = textInput.value.slice(0, match.index);
+  const lineIndex = textBefore.split('\n').length - 1;
+  const computed = window.getComputedStyle(textInput);
+  const lineHeight = parseFloat(computed.lineHeight) || 16;
+  const targetTop = Math.max(0, lineIndex * lineHeight - textInput.clientHeight / 3);
+  textInput.scrollTop = targetTop;
+  syncScroll();
+}
+
+function scrollMatchListToActive() {
+  const activeItem = matchList.querySelector(`.match-item[data-index="${activeMatchIndex}"]`);
+  if (!activeItem) {
+    return;
+  }
+  activeItem.scrollIntoView({ block: 'nearest' });
+}
+
 function flashCopied(button) {
   const isIconOnly = button.classList.contains('icon-only');
   const originalText = button.textContent;
@@ -381,14 +401,8 @@ function flashCopied(button) {
   button.classList.add('copied');
 
   if (isIconOnly) {
-    if (originalTooltip) {
-      button.setAttribute('data-tooltip', 'Copied');
-    }
     setTimeout(() => {
       button.classList.remove('copied');
-      if (originalTooltip) {
-        button.setAttribute('data-tooltip', originalTooltip);
-      }
     }, 1500);
     return;
   }
@@ -510,7 +524,6 @@ clearBtn.addEventListener('click', () => {
 copyOutputBtn.addEventListener('click', () => {
   copyText(outputList.textContent || '')
     .then(() => {
-      flashCopied(copyOutputBtn);
       showToast('Copied');
     })
     .catch(() => {});
